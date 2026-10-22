@@ -38,3 +38,33 @@ a{color:inherit;text-decoration:none}
 .menu{display:none;position:relative}
 .menu summary{list-style:none;display:flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid #34506B;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer}
 .menu summary::-webkit-details-marker{display:none}
+.menu .panel{position:absolute;right:0;top:52px;z-index:30;width:240px;background:#FFFFFF;border:1px solid #E4DCCD;border-radius:16px;padding:8px;box-shadow:0 18px 40px rgba(52,80,107,.2)}
+.menu .panel a{display:flex;align-items:center;min-height:48px;padding:0 14px;font-weight:500;border-radius:10px}
+.menu .panel a:hover{background:#F1E9DB}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s .5s cubic-bezier(.6,0,.2,1) forwards}
+.stamp{transform-origin:400px 372px;animation:thunk .55s .9s cubic-bezier(.3,1.5,.5,1) both}
+.hint{opacity:0;transition:opacity .25s ease}
+.wink:hover .hint,.wink:focus-within .hint{opacity:1}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes thunk{0%{transform:scale(1.7) rotate(-22deg);opacity:0}60%{opacity:1}100%{transform:scale(1) rotate(-12deg);opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@property --p{syntax:'<number>';inherits:true;initial-value:0}
+@property --cnt{syntax:'<integer>';inherits:true;initial-value:1}
+@keyframes prog{to{--p:1}}
+@supports (animation-timeline: view()){
+.reveal{animation:rise linear backwards;animation-timeline:view();animation-range:entry 0% entry 40%}
+.cat:nth-child(2n){animation-range:entry 6% entry 46%}
+.cat:nth-child(3n){animation-range:entry 12% entry 52%}
+.svc{animation:prog linear both;animation-timeline:view();animation-range:contain 0% contain 100%}
+}
+.svc{--sh:min(100vh,860px);position:relative;height:calc(var(--sh)*3)}
+.stage{position:sticky;top:0;height:var(--sh);min-height:640px;box-sizing:border-box;overflow:hidden;
+--a:clamp(0,calc(var(--p)*3),1);--b:clamp(0,calc(var(--p)*3 - 1),1);--c:clamp(0,calc(var(--p)*3 - 2),1);
+--v1:calc(1 - clamp(0,calc((var(--p) - .3)*20),1));
+--v2:calc(clamp(0,calc((var(--p) - .3)*20),1) - clamp(0,calc((var(--p) - .64)*20),1));
+--v3:clamp(0,calc((var(--p) - .64)*20),1);
+--cnt:calc(1 + var(--a)*24)}
+.sbody{display:grid;grid-template-columns:minmax(120px,170px) minmax(0,1fr);gap:clamp(16px,3cqw,40px)}
+.rail{--rh:min(300px,36vh)}
+.railfill{transform:scaleY(var(--p))}
+.pencil{transform:translateY(calc(var(--p)*var(--rh)))}
