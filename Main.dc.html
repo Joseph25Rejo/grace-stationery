@@ -68,3 +68,33 @@ a{color:inherit;text-decoration:none}
 .rail{--rh:min(300px,36vh)}
 .railfill{transform:scaleY(var(--p))}
 .pencil{transform:translateY(calc(var(--p)*var(--rh)))}
+.lit1{opacity:var(--v1)}.lit2{opacity:var(--v2)}.lit3{opacity:var(--v3)}
+.stoplabel1{opacity:calc(.5 + var(--v1)*.5)}.stoplabel2{opacity:calc(.5 + var(--v2)*.5)}.stoplabel3{opacity:calc(.5 + var(--v3)*.5)}
+.g1{opacity:var(--v1)}.g2{opacity:var(--v2)}.g3{opacity:var(--v3)}
+.sh1{transform:translateX(calc(var(--a)*270px))}
+.cp{opacity:clamp(0,calc((var(--a) - var(--d))*8),1);transform-box:fill-box;transform-origin:50% 100%;transform:rotate(calc(var(--a)*var(--r)))}
+.sh2{transform:translateX(calc(var(--b)*430px))}
+.rl{transform:rotate(calc(var(--b)*720deg))}
+.rlr{transform:rotate(calc(var(--b)*-720deg))}
+.face{opacity:clamp(0,calc((var(--b) - .55)*4),1)}
+.hl{transform:translateX(calc(var(--b)*300px))}
+.nb{transform-origin:380px 210px;transform:rotate(calc(var(--c)*-5deg)) scale(calc(1 + var(--c)*.04))}
+.pg{transform:translateX(calc((1 - clamp(0,calc(var(--c)*5),1))*var(--o)))}
+.hole{opacity:clamp(0,calc((var(--c) - var(--d))*20),1)}
+.coil{opacity:clamp(0,calc((var(--c) - var(--d))*10),1);transform:translateX(calc((1 - clamp(0,calc((var(--c) - var(--d))*10),1))*-44px))}
+.cover{opacity:clamp(0,calc((var(--c) - .88)*12),1)}
+.cntpill{opacity:var(--v1)}
+.cnt::after{counter-reset:cn var(--cnt);content:counter(cn)}
+.descwrap .desc{position:absolute;left:0;right:0;top:0;display:flex;align-items:flex-start;gap:16px}
+.descwrap .d1{opacity:var(--v1)}.descwrap .d2{opacity:var(--v2)}.descwrap .d3{opacity:var(--v3)}
+.cta{opacity:clamp(0,calc((var(--p) - .84)*10),1);transform:translateY(calc((1 - clamp(0,calc((var(--p) - .84)*10),1))*16px))}
+@container site (max-width:768px){
+.svc{height:calc(var(--sh)*2.2)}
+.fancy{display:none}
+.sbody{grid-template-columns:96px minmax(0,1fr) !important;gap:14px !important}
+.rail{--rh:min(220px,30vh)}
+.stoplabel1,.stoplabel2,.stoplabel3{font-size:12px !important}
+}
+@container site (max-width:900px){
+.s3{grid-column:span 3}.s2{grid-column:span 3}
+.navlinks{display:none !important}
