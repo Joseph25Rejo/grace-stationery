@@ -158,3 +158,18 @@ a{color:inherit;text-decoration:none}
 @container site (max-width:900px){
 .shv{height:calc(var(--sh)*3.2)}
 .fancy{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+*{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+.draw{stroke-dashoffset:0}
+.stamp{transform:rotate(-12deg)}
+.svc{height:auto !important}
+.stage{position:static !important;height:auto !important;min-height:0 !important}
+.svc .machine,.rail{display:none !important}
+.shv{--p:1;height:auto !important}
+.sbody{grid-template-columns:minmax(0,1fr) !important}
+.descwrap{display:flex;flex-direction:column;gap:24px;min-height:0 !important}
+.descwrap .desc{position:static !important;opacity:1 !important}
+.cta{opacity:1 !important;transform:none !important}
+}
+</style>
