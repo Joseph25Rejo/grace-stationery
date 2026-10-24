@@ -758,3 +758,34 @@ update();
 componentWillUnmount() {
 if (this._onScroll) {
 document.removeEventListener('scroll', this._onScroll, true);
+window.removeEventListener('resize', this._onScroll);
+}
+}
+renderVals() {
+const brand = this.props.brand ?? '#7D0620';
+const now = new Date();
+const day = now.getDay();
+const hr = now.getHours() + now.getMinutes() / 60;
+let open = false;
+let label = 'Closed right now';
+let sub = 'Opens tomorrow at 8:30 am.';
+if (day === 0) {
+label = 'Closed today';
+sub = 'Sundays usually closed. Back Monday, 8:30 am.';
+} else if (hr >= 8.5 && hr < 20.5) {
+open = true;
+label = 'Open now';
+sub = 'Until 8:30 pm today.';
+} else if (hr < 8.5) {
+sub = 'Opens at 8:30 am today.';
+} else if (day === 6) {
+sub = 'Back Monday at 8:30 am.';
+}
+return {
+sign: { label: label, sub: sub, bg: open ? '#FFD84D' : brand, fg: open ? '#34506B' : '#FFFFFF' },
+brand: this.props.brand ?? '#7D0620',
+heroTint: this.props.heroTint ?? '#E0F0FF'
+};
+}
+}
+</script>
