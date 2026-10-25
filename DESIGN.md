@@ -13,6 +13,8 @@ colors:
   bubblegum-pink: "#FF8FB0"
   sky-wash: "#DCEEFF"
   white: "#FFFFFF"
+  rail-track: "#D5C9B3"
+  butter: "#FFF1C2"
 typography:
   display:
     fontFamily: "Fraunces, Georgia, serif"
@@ -45,15 +47,51 @@ typography:
     fontFamily: "Great Vibes, cursive"
     fontSize: "42px"
     lineHeight: 0.9
+  micro:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "11px"
+  caption:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "12px"
+  small:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "14px"
+  body-lg:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "16px"
+  lead-sm:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "17px"
+  lead:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "18px"
+  lead-lg:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "19px"
+  subtitle:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "24px"
+  price:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "52px"
+  story-headline:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(30px, 4.4cqw, 48px)"
+  story-headline-compact:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(26px, 3.4cqw, 40px)"
   kannada:
     fontFamily: "Noto Serif Kannada, serif"
     fontWeight: 800
 rounded:
+  hair: "2px"
   xs: "6px"
   sm: "10px"
+  tile: "14px"
   md: "16px"
   lg: "20px"
   xl: "24px"
+  2xl: "28px"
   pill: "999px"
 spacing:
   xs: "8px"
