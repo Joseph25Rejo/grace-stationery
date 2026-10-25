@@ -30,12 +30,14 @@ a{color:inherit;text-decoration:none}
 .btn:hover{transform:translateY(-2px) rotate(-.6deg);box-shadow:0 10px 22px rgba(52,80,107,.2)}
 .nav a.l{display:flex;align-items:center;min-height:44px;padding:0 14px;font-size:14px;font-weight:500;border-radius:999px}
 .nav a.l:hover{background:#F1E9DB}
-.cat{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:28px;border:1px solid #E4DCCD;border-radius:20px;background:var(--cbg,#FFFFFF);box-shadow:0 1px 1px rgba(52,80,107,.08),0 10px 28px rgba(52,80,107,.08);transition:transform .25s cubic-bezier(.23,1,.32,1),box-shadow .25s ease}
+.cat{position:relative;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:22px;padding:24px 28px;border:1px solid #E4DCCD;border-radius:20px;background:var(--cbg,#FFFFFF);box-shadow:0 1px 1px rgba(52,80,107,.08),0 10px 28px rgba(52,80,107,.08);transition:transform .25s cubic-bezier(.23,1,.32,1),box-shadow .25s ease}
 .cat::before{content:"";position:absolute;top:-10px;right:26px;width:64px;height:22px;background:rgba(255,216,77,.85);transform:rotate(5deg);opacity:0;transition:opacity .2s ease, transform .25s ease}
 .cat:hover{transform:translateY(-6px) rotate(-1.2deg);box-shadow:0 2px 2px rgba(52,80,107,.08),0 22px 40px rgba(52,80,107,.16)}
 .cat:hover::before{opacity:1;transform:rotate(-4deg)}
+.cat svg{flex:none}
 .cat h3{margin:0;font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:26px;line-height:1.1}
 .cat p{margin:8px 0 0;font-size:15px;line-height:1.5;color:#4F5F6E}
+.aud>div+div{border-left:1.5px dashed #B9A98F}
 .s6{grid-column:span 6}.s3{grid-column:span 3}.s2{grid-column:span 2}
 .row:hover{background:rgba(255,216,77,.28)}
 .qlink{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 14px;font-weight:500;border-bottom:1px dashed #B9A98F;border-radius:6px}
@@ -111,10 +113,13 @@ a{color:inherit;text-decoration:none}
 .stl{font-size:12px !important}
 }
 @container site (max-width:600px){
+.cat{gap:16px;padding:20px}
+.cat svg{width:64px;height:64px}
 .sbody{grid-template-columns:30px minmax(0,1fr) !important;gap:10px !important}
 .stl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 }
 @container site (max-width:900px){
+.aud>div+div{border-left:0;border-top:1.5px dashed #B9A98F}
 .s3{grid-column:span 3}.s2{grid-column:span 3}
 .navlinks{display:none !important}
 .menu{display:block}
@@ -369,16 +374,16 @@ Call now
 <li style="flex: 1 1 220px; min-width: 0; display: flex; align-items: flex-start; gap: 14px"><span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; background: #FFD84D; color: #34506B; display: flex; align-items: center; justify-content: center; font-weight: 700">3</span><div><h3 class="disp" style="margin: 0 0 4px; font-size: 24px; line-height: 1.15">Collect at the shop</h3><p style="margin: 0; font-size: 15px; line-height: 1.55; color: #FDE9EF">Pick up on Horamavu Agara Main Road, Monday to Saturday, 8:30 am to 8:30 pm.</p></div></li>
 </ol>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 20px">
-<div style="background: #FBF7F0; color: #34506B; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<div class="aud" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); background: #FBF7F0; border-radius: 20px">
+<div style="color: #34506B; padding: 28px; display: flex; flex-direction: column; gap: 14px">
 <h3 class="disp" style="margin: 0; font-size: 24px; line-height: 1.15">Schools &amp; educational institutions</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4F5F6E">School supplies, stationery, art and craft materials, and xerox, lamination and spiral binding.</p>
 </div>
-<div style="background: #FBF7F0; color: #34506B; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<div style="color: #34506B; padding: 28px; display: flex; flex-direction: column; gap: 14px">
 <h3 class="disp" style="margin: 0; font-size: 24px; line-height: 1.15">Offices &amp; businesses</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4F5F6E">Office supplies, stationery, gift items, and xerox, lamination and spiral binding.</p>
 </div>
-<div style="background: #FBF7F0; color: #34506B; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<div style="color: #34506B; padding: 28px; display: flex; flex-direction: column; gap: 14px">
 <h3 class="disp" style="margin: 0; font-size: 24px; line-height: 1.15">Teachers, parents &amp; students</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4F5F6E">Walk in for school supplies, stationery, art and craft, novelties and toys.</p>
 </div>
