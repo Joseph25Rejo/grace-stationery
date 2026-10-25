@@ -244,7 +244,7 @@ Round and friendly. Buttons, nav links and the menu trigger are full pills (999p
 - Full-width rows, 52px tall, 500 weight, a dashed pencil-coloured underline, a 6px radius, and a yellow wash at 30% alpha on hover. Used for contact and category shortcuts.
 
 ### Highlighter Mark (signature)
-- A yellow band behind the lower third of a phrase (`linear-gradient` from 64% to 90%), used on one phrase per section heading.
+- A yellow band behind the lower third of a phrase (`linear-gradient` from 64% to 90%). Use it sparingly: on the pricing heading and the story heading (the hero has its own hand-drawn underline). Other section headings stay plain so the device keeps meaning.
 
 ### Scroll Stories (signature)
 - Pinned SVG stages where scroll progress drives paper, rollers, stamps and bag contents, with a progress rail and a pencil marker. Labels and descriptions crossfade per stop. These are decorative explanations: all information also appears as text, and reduced-motion users get a static stacked version.
