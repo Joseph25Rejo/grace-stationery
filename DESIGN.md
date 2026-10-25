@@ -226,3 +226,17 @@ Round and friendly. Buttons, nav links and the menu trigger are full pills (999p
 - **Don't** put information only in scroll-driven animation.
 - **Don't** italicise whole headings or stack more than one highlight per heading.
 - **Don't** replace the pill and 20px-card rounding with sharp corners.
+
+## Scroll Story Sizing (implemented)
+
+The pinned `#story` stage sizes its drawing from the space left over, with no hand-tuned heights.
+
+- **Fill the remaining height.** `.machine` is `flex: 1 1 0` (max 560px) with `grid-template-rows: minmax(0, 1fr)` (without it the grid row grows to the drawing and overlaps the description) and each SVG is `height: 100%`, so the art takes whatever the heading, description (`--dh`) and CTA leave. Nothing can overflow the stage; a longer description shrinks the art instead.
+- **Crop.** Both SVGs share `viewBox="76 30 688 342"`, trimming empty margins measured from the animation's real extents. Items only cross the crop when entering or leaving. Keep the two viewBoxes identical or the crossfade will jump.
+- **Description slot.** `--dh` is 132px by default and 76px at container width 1100px and up, where the text fits on two lines.
+- **Taller stage.** `--sh` is `min(100vh, 1000px)` (was 860px), so large screens use more of the viewport.
+- **Art stays in its column.** `.machine` clips on the left only (`clip-path: inset(-80px -160px -80px 0)`) so the outgoing art never slides over the rail labels, while the "1 / 25 copies" pill can still stick out on the right.
+- **Mobile.** Up to 768px the rail column is 132px with 12px labels; up to 600px it is a 30px dots-only rail and the labels are visually hidden (still in the DOM for screen readers), so the art gets about 310px instead of 240px. The active stop is named by the description.
+- **Writing quill.** A feather quill (ink-blue vane, paper-coloured shaft and barb notches, yellow ferrule, nib at the lower left) signs "Grace" stroke by stroke. One pen path, traced from the Great Vibes glyph outlines, does both jobs: it is a stroked mask that reveals the ink (`stroke-dashoffset: 1 - --w`), and it is the quill's `offset-path` (`offset-distance: --w * 100%`), so the nib is always on the freshly drawn line. The pen travels between letters over blank paper. If the signature text, font size or position changes, the path must be re-traced. The quill fades out once the signature is done.
+
+Measured result at 1920x1080 and 1366x768: zero content overflow at every scroll point, drawing about 1.6x its original on-screen size. At 390px mobile it is about 1.4x. Verified in headless Chrome with reduced-motion fallback untouched.

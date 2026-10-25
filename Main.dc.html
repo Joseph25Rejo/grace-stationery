@@ -68,8 +68,8 @@ a{color:inherit;text-decoration:none}
 .cat:nth-child(3n){animation-range:entry 12% entry 52%}
 .story{animation:prog linear both;animation-timeline:view();animation-range:contain 0% contain 100%}
 }
-.story{--sh:min(100vh,860px);position:relative;height:calc(var(--sh)*4.5)}
-.stage{position:sticky;top:var(--hh);height:calc(var(--sh) - var(--hh));min-height:640px;box-sizing:border-box;overflow:hidden;
+.story{--sh:min(100vh,1000px);position:relative;height:calc(var(--sh)*4.5)}
+.stage{--dh:132px;position:sticky;top:var(--hh);height:calc(var(--sh) - var(--hh));min-height:640px;box-sizing:border-box;overflow:hidden;
 --pa:clamp(0,calc(var(--p)/.56),1);--pb:clamp(0,calc((var(--p) - .62)/.38),1);--m:clamp(0,calc((var(--p) - .56)/.06),1);
 --a:clamp(0,calc(var(--pb)*3),1);--b:clamp(0,calc(var(--pb)*3 - 1),1);--c:clamp(0,calc(var(--pb)*3 - 2),1);
 --v1:calc((1 - clamp(0,calc((var(--pb) - .3)*20),1))*clamp(0,calc(var(--m)*2 - 1),1));
@@ -77,7 +77,9 @@ a{color:inherit;text-decoration:none}
 --v3:clamp(0,calc((var(--pb) - .64)*20),1);
 --cnt:calc(1 + var(--a)*24)}
 .sbody{display:grid;grid-template-columns:minmax(120px,170px) minmax(0,1fr);gap:clamp(16px,3cqw,40px)}
-.rail{--rh:min(300px,36vh)}
+.rail{--rh:min(340px,42vh)}
+.machine{flex:1 1 0;min-height:0;max-height:560px;grid-template-rows:minmax(0,1fr);clip-path:inset(0 -160px 0 0)}
+.machine>div{min-height:0}
 .railfill{transform:scaleY(var(--p))}
 .pencil{transform:translateY(calc(var(--p)*var(--rh)))}
 .lit1{opacity:var(--v1)}.lit2{opacity:var(--v2)}.lit3{opacity:var(--v3)}
@@ -102,9 +104,13 @@ a{color:inherit;text-decoration:none}
 @container site (max-width:768px){
 .story{height:calc(var(--sh)*3.2)}
 .fancy{display:none}
-.sbody{grid-template-columns:96px minmax(0,1fr) !important;gap:14px !important}
+.sbody{grid-template-columns:132px minmax(0,1fr) !important;gap:14px !important}
 .rail{--rh:min(220px,30vh)}
 .stl{font-size:12px !important}
+}
+@container site (max-width:600px){
+.sbody{grid-template-columns:30px minmax(0,1fr) !important;gap:10px !important}
+.stl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 }
 @container site (max-width:900px){
 .s3{grid-column:span 3}.s2{grid-column:span 3}
@@ -118,6 +124,7 @@ a{color:inherit;text-decoration:none}
 .hide-sm{display:none !important}
 }
 /* STORY: one scroll story, shelves then counter */
+@container site (min-width:1100px){.stage{--dh:76px}}
 @media (max-height:760px){.cta{display:none !important}}
 @supports (animation-timeline: view()){
 .sign{animation:signin linear backwards;animation-timeline:view();animation-range:entry 0% entry 70%}
@@ -138,8 +145,8 @@ a{color:inherit;text-decoration:none}
 .descwrap .sc1{opacity:var(--s1)}.descwrap .sc2{opacity:var(--s2)}.descwrap .sc3{opacity:var(--s3)}.descwrap .sc4{opacity:var(--s4)}.descwrap .sc5{opacity:var(--s5)}
 .ground{opacity:calc(clamp(0,calc(var(--t3)*4),1)*(1 - clamp(0,calc(var(--t5)*6),1)))}
 .sheet{transform-origin:380px 205px;opacity:calc(1 - clamp(0,calc(var(--t3)*3),1));transform:translateY(calc(var(--t3)*24px)) scale(calc(1 - var(--t3)*.3))}
-.inkcover{transform:translateX(calc(var(--w)*210px))}
-.hand{transform:translate(calc(300px + var(--w)*165px),218px);opacity:calc(1 - clamp(0,calc((var(--t1) - .5)*8),1))}
+.inkpath{stroke-dasharray:1 1;stroke-dashoffset:calc(1 - var(--w))}
+.hand{offset-path:path("M 295.3 139.3 C 289.6 146.1 289.6 156.5 295.3 169.0 C 304.2 175.2 315.6 178.3 328.1 178.1 C 346.8 177.8 361.4 172.1 364.3 156.5 C 365.5 144.0 353.0 138.8 338.5 139.3 C 319.8 140.4 305.2 156.5 298.4 171.0 C 291.7 186.6 290.6 201.2 300.0 211.6 C 308.3 219.9 323.9 217.8 334.3 211.6 C 342.6 206.4 351.0 200.2 354.6 193.9 C 354.1 199.1 351.0 203.3 348.4 205.9 C 346.8 216.8 342.6 226.2 335.4 233.4 C 323.9 243.8 308.3 254.2 294.8 257.4 C 283.4 258.4 284.4 252.2 289.6 247.0 C 302.1 239.7 320.8 236.6 338.5 233.4 C 351.0 232.9 360.3 234.0 366.6 235.3 L 365.5 201.2 C 367.6 192.9 370.7 182.5 373.6 176.4 C 372.8 182.5 371.8 186.6 371.2 189.2 L 385.3 189.6 C 383.2 196.0 373.8 205.4 370.2 214.7 C 369.2 221.0 375.4 223.0 381.1 216.8 C 385.3 212.6 389.4 207.4 391.5 202.8 C 396.7 195.0 405.0 186.6 411.3 186.6 C 416.5 186.6 419.6 188.2 420.6 190.3 C 415.4 188.2 405.0 189.8 398.8 197.0 C 390.5 207.4 387.4 214.7 391.5 219.9 C 397.8 224.1 407.1 214.7 412.3 207.4 C 417.5 200.2 420.6 196.0 422.2 193.9 C 418.6 205.4 412.3 214.7 412.8 219.9 C 417.5 223.0 424.8 215.8 428.4 202.8 C 433.1 192.9 442.5 186.6 449.8 188.7 C 453.9 190.8 451.8 195.0 447.7 197.0 C 442.5 191.8 430.0 201.2 426.9 211.6 C 426.9 219.9 436.2 223.0 445.6 216.8 C 449.8 213.7 452.9 209.5 455.5 204.8 C 460.2 205.4 469.5 204.8 475.8 200.2 C 479.9 195.0 478.9 186.6 474.7 186.1 C 468.5 185.6 460.2 197.0 454.4 210.6 C 453.9 219.9 463.3 223.0 471.6 215.8 C 476.8 211.6 479.9 207.4 482.0 203.3");offset-distance:calc(var(--w)*100%);offset-rotate:0deg;opacity:calc(1 - clamp(0,calc((var(--t1) - .5)*8),1))}
 .tape{--tt:clamp(0,calc((var(--t1) - .5 - var(--d))*6),1);opacity:var(--tt);transform:translate(calc((1 - var(--tt))*var(--tx)),calc((1 - var(--tt))*var(--ty)))}
 .dab{--pt:clamp(0,calc((var(--t2) - var(--d))*5),1);transform-box:fill-box;transform-origin:center;transform:scale(calc(var(--pt) + sin(calc(var(--pt)*180deg))*.25));opacity:clamp(0,calc(var(--pt)*5),1)}
 .cut{opacity:calc(clamp(0,calc((var(--t2) - .5)*8),1)*(1 - clamp(0,calc(var(--t3)*4),1)));transform:translate(calc(clamp(0,calc((var(--t2) - .8)*5),1)*var(--cx)),calc(clamp(0,calc((var(--t2) - .8)*5),1)*70px + var(--t3)*120px))}
@@ -415,9 +422,9 @@ Call now
 
 <!-- STORY: one sheet of paper, from the shelves to the counter -->
 <section id="story" class="story" data-scrollsec="1" aria-labelledby="story-title" style="background: #FBF7F0">
-<div class="stage" style="padding: clamp(28px, 4cqw, 48px) clamp(20px, 5cqw, 48px); display: flex; flex-direction: column; gap: clamp(12px, 2vh, 28px); background-image: radial-gradient(circle, rgba(52,80,107,.16) 1px, transparent 1.600px); background-size: 24px 24px">
+<div class="stage" style="padding: clamp(20px, 3cqw, 36px) clamp(20px, 5cqw, 48px); display: flex; flex-direction: column; gap: clamp(8px, 1.4vh, 20px); background-image: radial-gradient(circle, rgba(52,80,107,.16) 1px, transparent 1.600px); background-size: 24px 24px">
 <div style="max-width: 1240px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 32px">
-<h2 id="story-title" class="disp" style="margin: 0; max-width: 700px; font-size: clamp(32px, 5cqw, 56px); line-height: 1.05; text-wrap: balance">From the first pencil to the <em class="mark">final binding</em></h2>
+<h2 id="story-title" class="disp" style="margin: 0; max-width: 700px; font-size: clamp(30px, 4.4cqw, 48px); line-height: 1.05; text-wrap: balance">From the first pencil to the <em class="mark">final binding</em></h2>
 <p class="hide-sm" style="margin: 0; max-width: 380px; font-size: 16px; line-height: 1.55; color: var(--muted)">Scroll to watch one blank sheet fill a school bag, then go through xerox, lamination and spiral binding.</p>
 </div>
 
@@ -427,30 +434,29 @@ Call now
 <div aria-hidden="true" class="railfill" style="position: absolute; left: 13px; top: 0; height: 100%; width: 4px; border-radius: 2px; background: var(--brand); transform-origin: top"></div>
 <svg aria-hidden="true" class="pencil" width="30" height="34" viewBox="0 0 30 34" style="position: absolute; left: 0; top: -30px"><rect x="11" y="2" width="8" height="19" rx="1.500" fill="#FFD84D" stroke="#34506B" stroke-width="1.800"></rect><rect x="11" y="2" width="8" height="4" fill="#FF8FB0" stroke="#34506B" stroke-width="1.800"></rect><g class="pb"><polygon points="11,21 19,21 18,25 12,25" fill="#F6D6B0" stroke="#34506B" stroke-width="1.800" stroke-linejoin="round"></polygon><rect x="12.500" y="25" width="5" height="3" rx="1" fill="#34506B"></rect></g><g class="ps"><polygon points="11,21 19,21 15,32" fill="#F6D6B0" stroke="#34506B" stroke-width="1.800" stroke-linejoin="round"></polygon><polygon points="13.500,27.500 16.500,27.500 15,32" fill="#34506B"></polygon></g></svg>
 <ol style="list-style: none; margin: 0; padding: 0">
-<li style="position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot1" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab1 stl" style="font-size: 14px; font-weight: 700">Stationery</span></li>
-<li style="position: absolute; left: 0; top: calc(100% * 1 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot2" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab2 stl" style="font-size: 14px; font-weight: 700">Art &amp; craft</span></li>
-<li style="position: absolute; left: 0; top: calc(100% * 2 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot3" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab3 stl" style="font-size: 14px; font-weight: 700">Toys</span></li>
-<li style="position: absolute; left: 0; top: calc(100% * 3 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot4" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab4 stl" style="font-size: 14px; font-weight: 700">Gifts</span></li>
-<li style="position: absolute; left: 0; top: calc(100% * 4 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot5" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab5 stl" style="font-size: 14px; font-weight: 700">School &amp; office</span></li>
-<li style="position: absolute; left: 0; top: calc(100% * 5 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="lit1" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="stoplabel1 stl" style="font-size: 14px; font-weight: 700">Xerox</span></li>
-<li style="position: absolute; left: 0; top: calc(100% * 6 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="lit2" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="stoplabel2 stl" style="font-size: 14px; font-weight: 700">Lamination</span></li>
-<li style="position: absolute; left: 0; top: 100%; display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="lit3" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="stoplabel3 stl" style="font-size: 14px; font-weight: 700">Spiral binding</span></li>
+<li style="position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot1" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab1 stl" style="font-size: 15px; font-weight: 700">Stationery</span></li>
+<li style="position: absolute; left: 0; top: calc(100% * 1 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot2" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab2 stl" style="font-size: 15px; font-weight: 700">Art &amp; craft</span></li>
+<li style="position: absolute; left: 0; top: calc(100% * 2 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot3" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab3 stl" style="font-size: 15px; font-weight: 700">Toys</span></li>
+<li style="position: absolute; left: 0; top: calc(100% * 3 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot4" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab4 stl" style="font-size: 15px; font-weight: 700">Gifts</span></li>
+<li style="position: absolute; left: 0; top: calc(100% * 4 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="dot5" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="lab5 stl" style="font-size: 15px; font-weight: 700">School &amp; office</span></li>
+<li style="position: absolute; left: 0; top: calc(100% * 5 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="lit1" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="stoplabel1 stl" style="font-size: 15px; font-weight: 700">Xerox</span></li>
+<li style="position: absolute; left: 0; top: calc(100% * 6 / 7); display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="lit2" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="stoplabel2 stl" style="font-size: 15px; font-weight: 700">Lamination</span></li>
+<li style="position: absolute; left: 0; top: 100%; display: flex; align-items: center; gap: 12px; transform: translateY(-50%)"><span aria-hidden="true" style="flex: none; width: 30px; display: flex; justify-content: center"><span style="width: 14px; height: 14px; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 50%; background: #FBF7F0; position: relative"><span class="lit3" style="position: absolute; inset: -2px; border-radius: 50%; background: var(--brand)"></span></span></span><span class="stoplabel3 stl" style="font-size: 15px; font-weight: 700">Spiral binding</span></li>
 </ol>
 </div>
 
-<div style="min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: clamp(10px, 2vh, 22px)">
+<div style="min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: clamp(8px, 1.4vh, 16px)">
 <div class="machine" role="img" aria-label="One sheet of paper turns into a packed school bag, then passes through a photocopier, a laminator and a spiral binder as you scroll" style="position: relative; display: grid">
 <div style="grid-area: 1 / 1; min-width: 0; transform: translateX(calc(var(--m) * -40%)); opacity: calc(1 - var(--m))">
-<svg aria-hidden="true" viewBox="0 0 760 420" style="display: block; width: 100%; height: auto; max-height: min(42vh, 380px); margin: 0 auto">
-<defs><clipPath id="sheetClip"><rect x="270" y="70" width="220" height="270" rx="6"></rect></clipPath></defs>
+<svg aria-hidden="true" viewBox="76 30 688 342" style="display: block; width: 100%; height: 100%; margin: 0 auto">
+<defs><clipPath id="sheetClip"><rect x="270" y="70" width="220" height="270" rx="6"></rect></clipPath><mask id="inkMask" maskUnits="userSpaceOnUse" x="260" y="60" width="240" height="290"><path class="inkpath" pathLength="1" d="M 295.3 139.3 C 289.6 146.1 289.6 156.5 295.3 169.0 C 304.2 175.2 315.6 178.3 328.1 178.1 C 346.8 177.8 361.4 172.1 364.3 156.5 C 365.5 144.0 353.0 138.8 338.5 139.3 C 319.8 140.4 305.2 156.5 298.4 171.0 C 291.7 186.6 290.6 201.2 300.0 211.6 C 308.3 219.9 323.9 217.8 334.3 211.6 C 342.6 206.4 351.0 200.2 354.6 193.9 C 354.1 199.1 351.0 203.3 348.4 205.9 C 346.8 216.8 342.6 226.2 335.4 233.4 C 323.9 243.8 308.3 254.2 294.8 257.4 C 283.4 258.4 284.4 252.2 289.6 247.0 C 302.1 239.7 320.8 236.6 338.5 233.4 C 351.0 232.9 360.3 234.0 366.6 235.3 L 365.5 201.2 C 367.6 192.9 370.7 182.5 373.6 176.4 C 372.8 182.5 371.8 186.6 371.2 189.2 L 385.3 189.6 C 383.2 196.0 373.8 205.4 370.2 214.7 C 369.2 221.0 375.4 223.0 381.1 216.8 C 385.3 212.6 389.4 207.4 391.5 202.8 C 396.7 195.0 405.0 186.6 411.3 186.6 C 416.5 186.6 419.6 188.2 420.6 190.3 C 415.4 188.2 405.0 189.8 398.8 197.0 C 390.5 207.4 387.4 214.7 391.5 219.9 C 397.8 224.1 407.1 214.7 412.3 207.4 C 417.5 200.2 420.6 196.0 422.2 193.9 C 418.6 205.4 412.3 214.7 412.8 219.9 C 417.5 223.0 424.8 215.8 428.4 202.8 C 433.1 192.9 442.5 186.6 449.8 188.7 C 453.9 190.8 451.8 195.0 447.7 197.0 C 442.5 191.8 430.0 201.2 426.9 211.6 C 426.9 219.9 436.2 223.0 445.6 216.8 C 449.8 213.7 452.9 209.5 455.5 204.8 C 460.2 205.4 469.5 204.8 475.8 200.2 C 479.9 195.0 478.9 186.6 474.7 186.1 C 468.5 185.6 460.2 197.0 454.4 210.6 C 453.9 219.9 463.3 223.0 471.6 215.8 C 476.8 211.6 479.9 207.4 482.0 203.3" fill="none" stroke="#FFFFFF" stroke-width="8.500" stroke-linecap="round" stroke-linejoin="round"></path></mask></defs>
 <g stroke="#34506B" stroke-width="2.500" stroke-linecap="round" stroke-linejoin="round">
 <line class="ground" x1="90" y1="346" x2="670" y2="346" stroke-dasharray="2 9" fill="none"></line>
 
 <g class="sheet">
 <rect x="270" y="70" width="220" height="270" rx="6" fill="#FFFFFF"></rect>
 <g clip-path="url(#sheetClip)">
-<text x="380" y="222" text-anchor="middle" font-family="Great Vibes, cursive" font-size="104" fill="#34506B" stroke="none">Grace</text>
-<rect class="inkcover" x="272" y="120" width="214" height="120" fill="#FFFFFF" stroke="none"></rect>
+<text x="380" y="222" text-anchor="middle" font-family="Great Vibes, cursive" font-size="104" fill="#34506B" stroke="none" mask="url(#inkMask)">Grace</text>
 </g>
 <g class="dab" style="--d: .05"><circle cx="318" cy="112" r="24" fill="#FFD84D"></circle></g>
 <g class="dab" style="--d: .15"><circle cx="440" cy="116" r="20" fill="#FF8FB0"></circle></g>
@@ -461,10 +467,13 @@ Call now
 <rect class="tape" style="--d: .24; --tx: 0px; --ty: -70px" x="258" y="60" width="244" height="22" fill="#FFD84D" fill-opacity=".92"></rect>
 <rect class="tape" style="--d: .36; --tx: 0px; --ty: 70px" x="258" y="328" width="244" height="22" fill="#FF8FB0" fill-opacity=".92"></rect>
 <g class="hand">
-<path d="M0 0 L10 -8 L66 -74 L80 -62 L20 6 Z" style="fill: var(--brand)"></path>
-<path d="M0 0 L7 -6 L13 2 Z" fill="#34506B"></path>
-<path d="M62 -70 C70 -96 104 -104 122 -84 C138 -66 130 -44 108 -30 L84 -12 C74 -4 60 -12 64 -26 Z" fill="#F6D6B0"></path>
-<path d="M70 -60 C84 -66 92 -58 90 -48" fill="none"></path>
+<g class="quill" stroke-linejoin="round" stroke-linecap="round">
+<path d="M10 -12 C20 -22 22 -28 28 -35 C36 -52 44 -66 56 -76 C68 -90 82 -98 96 -103 C110 -112 124 -120 139 -126 L158 -132 C154 -122 152 -118 148 -114 C138 -100 128 -88 118 -75 C108 -62 98 -50 85 -40 C70 -30 52 -24 38 -22 C28 -18 18 -14 10 -12 Z" fill="#34506B" stroke-width="1.500"></path>
+<path d="M120 -78 L109 -75 M108 -64 L97 -62 M96 -52 L86 -52 M135 -99 L126 -97 M70 -76 L62 -66" fill="none" stroke="#FBF7F0" stroke-width="2"></path>
+<path d="M12 -14 C50 -42 105 -88 156 -131" fill="none" stroke="#FBF7F0" stroke-width="2"></path>
+<polygon points="0,0 6,-10 12,-7" fill="#34506B"></polygon>
+<path d="M5.500 -10.500 L12.500 -6 L15 -10 L8 -14.500 Z" fill="#FFD84D"></path>
+</g>
 </g>
 </g>
 
@@ -547,7 +556,7 @@ Call now
 </svg>
 </div>
 <div style="grid-area: 1 / 1; min-width: 0; position: relative; transform: translateX(calc((1 - var(--m)) * 40%)); opacity: var(--m)">
-<svg aria-hidden="true" viewBox="0 0 760 420" style="display: block; width: 100%; height: auto; max-height: min(42vh, 380px); margin: 0 auto">
+<svg aria-hidden="true" viewBox="76 30 688 342" style="display: block; width: 100%; height: 100%; margin: 0 auto">
 <defs>
 <linearGradient id="scanGlow" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFD84D" stop-opacity="0"></stop><stop offset=".5" stop-color="#FFD84D" stop-opacity=".95"></stop><stop offset="1" stop-color="#FFD84D" stop-opacity="0"></stop></linearGradient>
 <clipPath id="afterNip"><rect x="380" y="180" width="400" height="60"></rect></clipPath>
@@ -602,7 +611,7 @@ Call now
 </div>
 </div>
 
-<div class="descwrap" style="position: relative; min-height: 132px">
+<div class="descwrap" style="position: relative; min-height: var(--dh)">
 <div class="desc sc1"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#7D0620" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M4 20l1-4L16 5l3 3L8 19z"></path><path d="M14 7l3 3"></path></svg><div><h3 class="disp" style="margin: 0 0 6px; font-size: 26px; line-height: 1.1">Stationery</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: var(--muted)">For everything you write, mark and keep.</p></div></div>
 <div class="desc sc2"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#7D0620" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M12 3C7 3 3 7 3 12s4 9 9 9c1.600 0 2.200-1.100 1.600-2.200-.5-1 0-2.300 1.400-2.300H17a4 4 0 004-4c0-5-4-9.500-9-9.500z"></path><circle cx="8" cy="11" r="1"></circle><circle cx="12" cy="7.500" r="1"></circle><circle cx="16" cy="10" r="1"></circle></svg><div><h3 class="disp" style="margin: 0 0 6px; font-size: 26px; line-height: 1.1">Art &amp; craft</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: var(--muted)">Materials for the make-something-today mood.</p></div></div>
 <div class="desc sc3"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#7D0620" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"></path><path d="M12 12l8-4.500M12 12L4 7.500M12 12v9"></path></svg><div><h3 class="disp" style="margin: 0 0 6px; font-size: 26px; line-height: 1.1">Toys</h3><p style="margin: 0; font-size: 16px; line-height: 1.55; color: var(--muted)">For play time, any time.</p></div></div>
