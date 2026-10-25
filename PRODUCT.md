@@ -26,7 +26,7 @@ Enquiries and orders start by phone, WhatsApp, email or in person, and WhatsApp 
 
 - Static single page: `Main.dc.html` with React and `support.js` in `vendor/`, no build step observed.
 - Sections: stationery, school and office supplies, gifts/novelties/toys, a services menu, a schools and offices enquiry block, and contact details.
-- Services and prices currently on the page: xerox ₹2 one side / ₹3 double side; printout ₹3 / ₹5, colour ₹10 per page; lamination A4 ₹45, Aadhar long ₹35, ID card ₹25; spiral binding ₹40.
+- Services and prices currently on the page: xerox ₹2 one side / ₹3 double side; printout ₹3 one side / ₹5 double side per page (confirmed by the owner), colour ₹10 per page; lamination A4 ₹45, Aadhar long ₹35, ID card ₹25; spiral binding ₹40.
 - Hours: Monday to Saturday, 8:30 am to 8:30 pm. Sunday usually closed.
 - Contact: +91 91801 08806 (Shaji Varghese), +91 91481 07952, gracestationery.in@gmail.com. Padma Building, No. 117-1, Shop No. 4, Horamavu Agara Main Road, Bangalore 560 043.
 - Ordering for schools and offices (confirmed): send a supply list by email, WhatsApp, call or in person; the shop quotes it; the order is collected at the shop. WhatsApp number is +91 91801 08806. Delivery, minimum order and GST invoicing are not confirmed and must not be claimed.
